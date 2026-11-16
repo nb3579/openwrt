@@ -39,7 +39,8 @@ ipq60xx_setup_interfaces()
 	jdcloud,re-cs-07|\
 	jdcloud,re-ss-01|\
 	netgear,rbr350|\
-	qihoo,360v6)
+	qihoo,360v6|\
+	zn,m2)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" "wan"
 		;;
 	netgear,wax214)
@@ -75,6 +76,12 @@ ipq60xx_setup_macs()
 		lan_mac=$(mtd_get_mac_ascii factory lanMac)
 		wan_mac=$(macaddr_add "$lan_mac" 1)
 		label_mac=$lan_mac
+		;;
+	zn,m2)
+		# ethaddr lives in the APPSBL environment and is the WAN MAC
+		wan_mac=$(mtd_get_mac_ascii 0:appsblenv ethaddr)
+		lan_mac=$(macaddr_add "$wan_mac" 1)
+		label_mac=$wan_mac
 		;;
 	tplink,eap610-outdoor|\
 	tplink,eap620-hd-v2|\
