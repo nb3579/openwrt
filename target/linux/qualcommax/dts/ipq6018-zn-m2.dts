@@ -6,6 +6,8 @@
  * Ported to mainline ipq6018 PPE/EDMA bindings.
  */
 
+/dts-v1/;
+
 #include "ipq6018.dtsi"
 #include "ipq6018-cp-cpu.dtsi"
 #include "ipq6018-ess.dtsi"
